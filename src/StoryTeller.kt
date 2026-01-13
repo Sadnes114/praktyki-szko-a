@@ -1,6 +1,5 @@
-class StoryTeller {
+class StoryTeller(private val randomGenerator: RandomGenerator) {
 
-    private fun randomInt(): Int = (1..50).random()
 
     fun tellFirstStory(): String {
         val registry = EventRegistry()
@@ -14,28 +13,28 @@ class StoryTeller {
         )
         garden.setCustomer(customer)
 
-        registry.addEvent(customer.toEvent(order++))
+        registry.addEvent(event = customer.toEvent(order++))
 
-        val flower = Flower("Róża")
-        customer.buyPlant(flower)
+        val flower = Flower(name = "Róża")
+        customer.buyPlant(plant = flower)
         registry.addEvent(
-            Event(order++, "Jan kupił roślinę: ${flower.name}")
+            Event(order++, message = "Jan kupił roślinę: ${flower.name}")
         )
 
-        val petalsToAdd = randomInt()
+        val petalsToAdd = randomGenerator.randomInt()
         repeat(petalsToAdd) {
             flower.addPetal()
         }
         registry.addEvent(
-            Event(order++, "Dodano $petalsToAdd płatków do ${flower.name}")
+            Event(order++, message = "Dodano $petalsToAdd płatków do ${flower.name}")
         )
 
-        val petalsToRemove = randomInt()
+        val petalsToRemove = randomGenerator.randomInt()
         repeat(petalsToRemove) {
             flower.deletePetal()
         }
         registry.addEvent(
-            Event(order++, "Usunięto $petalsToRemove płatków z ${flower.name}")
+            Event(order++, message = "Usunięto $petalsToRemove płatków z ${flower.name}")
         )
 
         return registry.print()
