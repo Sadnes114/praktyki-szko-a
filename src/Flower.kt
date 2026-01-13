@@ -4,14 +4,14 @@ class Flower(name: String) : Plant(name) {
 
     fun addPetals(amount: Int) {
         repeat(amount) {
-            petal += 1
+            petal += amount
             println("Petal: $petal")
         }
     }
 
     fun deletePetals(amount: Int) {
         repeat(amount) {
-            petal -= 1
+            petal -= amount
             println("Petal: $petal")
         }
     }
