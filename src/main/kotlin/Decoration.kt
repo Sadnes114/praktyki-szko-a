@@ -1,6 +1,7 @@
 class Decoration(val name: String) {
     private var condition: Condition = Condition.CLEAN
 
+
     fun clean(){
         condition = Condition.CLEAN
         println("Cleaning $name")

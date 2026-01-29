@@ -5,7 +5,6 @@ import com.google.gson.Gson
 data class User(val name: String, val age: Int)
 
 fun main() {
-
     val user = User("Jan", 25)
 
     val gson = Gson()
