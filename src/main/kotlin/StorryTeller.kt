@@ -11,7 +11,7 @@ class StoryTeller(private val randomGenerator: RandomGenerator) {
             loyaltyPoints = 0,
             garden = garden
         )
-        garden.setCustomer(customer)
+       
 
         registry.addEvent(event = customer.toEvent(order++))
 
@@ -22,17 +22,13 @@ class StoryTeller(private val randomGenerator: RandomGenerator) {
         )
 
         val petalsToAdd = randomGenerator.randomInt()
-        repeat(petalsToAdd) {
-            flower.addPetal()
-        }
+
         registry.addEvent(
             Event(order++, message = "Dodano $petalsToAdd płatków do ${flower.name}")
         )
 
         val petalsToRemove = randomGenerator.randomInt()
-        repeat(petalsToRemove) {
-            flower.deletePetal()
-        }
+        
         registry.addEvent(
             Event(order++, message = "Usunięto $petalsToRemove płatków z ${flower.name}")
         )
