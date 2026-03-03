@@ -22,13 +22,15 @@ class StoryTeller(private val randomGenerator: RandomGenerator) {
         )
 
         val petalsToAdd = randomGenerator.randomInt()
+        flower.addPetals(petalsToAdd)
 
         registry.addEvent(
             Event(order++, message = "Dodano $petalsToAdd płatków do ${flower.name}")
         )
 
         val petalsToRemove = randomGenerator.randomInt()
-        
+        flower.deletePetals(petalsToRemove)
+
         registry.addEvent(
             Event(order++, message = "Usunięto $petalsToRemove płatków z ${flower.name}")
         )
