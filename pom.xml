@@ -12,7 +12,7 @@
     <properties>
         <kotlin.version>2.0.20</kotlin.version>
         <junit.version>6.0.3</junit.version>
-        <kotlin.compiler.jvmTarge>21</kotlin.compiler.jvmTarge>
+        <kotlin.compiler.jvmTarget>21</kotlin.compiler.jvmTarget>
     </properties>
 
     <dependencies>
