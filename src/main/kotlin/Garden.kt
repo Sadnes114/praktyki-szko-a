@@ -15,9 +15,5 @@ class Garden(val name: String) {
     fun deleteDecoration(decoration: Decoration) {
         decorations = decorations - decoration
     }
-    fun setCustomer(customer: Customer) {
-        this.customer = customer
-    }
-
 
 }
