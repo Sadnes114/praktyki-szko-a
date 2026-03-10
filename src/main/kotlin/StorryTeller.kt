@@ -11,7 +11,7 @@ class StoryTeller(private val randomGenerator: RandomGenerator) {
             loyaltyPoints = 0,
             garden = garden
         )
-       
+        garden.customer = customer
 
         registry.addEvent(event = customer.toEvent(order++))
 
