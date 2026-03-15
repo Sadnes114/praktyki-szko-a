@@ -44,3 +44,4 @@ fun Customer.toEvent(order: Int): Event =
         order = order,
         message = "Customer $name ma $loyaltyPoints punktów lojalnościowych"
     )
+        .
