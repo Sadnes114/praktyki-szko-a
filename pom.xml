@@ -11,7 +11,7 @@
 
     <properties>
         <kotlin.version>2.0.20</kotlin.version>
-        <junit.version>5.11.0</junit.version>
+        <junit.version>6.0.3</junit.version>
         <kotlin.compiler.jvmTarget>21</kotlin.compiler.jvmTarget>
     </properties>
 
@@ -48,9 +48,9 @@
         </dependency>
 
         <dependency>
-            <groupId>io.mockk</groupId>
-            <artifactId>mockk-jvm</artifactId>
-            <version>1.13.12</version>
+            <groupId>org.mockito.kotlin</groupId>
+            <artifactId>mockito-kotlin</artifactId>
+            <version>5.4.0</version>
             <scope>test</scope>
         </dependency>
 

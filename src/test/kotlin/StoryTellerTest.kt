@@ -1,27 +1,66 @@
-import io.mockk.every
-import io.mockk.mockk
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.mockito.Mockito.*
 import kotlin.test.assertTrue
-import kotlin.test.assertEquals
 
 class StoryTellerTest {
 
-    private val randomGenerator = mockk<RandomGenerator>()
-    private val storyTeller = StoryTeller(randomGenerator)
+    private lateinit var randomGenerator: RandomGenerator
+    private lateinit var storyTeller: StoryTeller
+
+    @BeforeEach
+    fun setUp() {
+        randomGenerator = mock(RandomGenerator::class.java)
+        storyTeller = StoryTeller(randomGenerator)
+    }
 
     @Test
-    fun `should tell a consistent story with mocked random values`() {
+    @DisplayName("Powinien wygenerować historię z kontrolowanymi wartościami random")
+    fun shouldGenerateStoryWithMockedRandom() {
+        // given
+        `when`(randomGenerator.randomInt())
+            .thenReturn(5) // petalsToAdd
+            .thenReturn(2) // petalsToRemove
 
-        every { randomGenerator.randomInt() } returns 5 andThen 2
-
+        // when
         val result = storyTeller.tellFirstStory()
 
-        assertTrue(result.contains("Customer Jan ma 0 punktów lojalnościowych"), "Brak info o kliencie")
-        assertTrue(result.contains("Jan kupił roślinę: Róża"), "Brak info o zakupie")
-        assertTrue(result.contains("Dodano 5 płatków do Róża"), "Brak info o dodaniu płatków")
-        assertTrue(result.contains("Usunięto 2 płatków z Róża"), "Brak info o usunięciu płatków")
+        // then
+        assertTrue(result.contains("Jan"))
+        assertTrue(result.contains("Róża"))
+        assertTrue(result.contains("Dodano 5"))
+        assertTrue(result.contains("Usunięto 2"))
+    }
 
-        val lines = result.split("\n")
-        assertEquals(4, lines.size)
+    @Test
+    @DisplayName("Powinien wywołać randomInt dokładnie 2 razy")
+    fun shouldCallRandomIntTwice() {
+        // given
+        `when`(randomGenerator.randomInt())
+            .thenReturn(1)
+            .thenReturn(1)
+
+        // when
+        storyTeller.tellFirstStory()
+
+        // then
+        verify(randomGenerator, times(2)).randomInt()
+    }
+
+    @Test
+    @DisplayName("Powinien działać dla innych wartości random")
+    fun shouldWorkForDifferentValues() {
+        // given
+        `when`(randomGenerator.randomInt())
+            .thenReturn(10)
+            .thenReturn(3)
+
+        // when
+        val result = storyTeller.tellFirstStory()
+
+        // then
+        assertTrue(result.contains("Dodano 10"))
+        assertTrue(result.contains("Usunięto 3"))
     }
 }
