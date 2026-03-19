@@ -48,4 +48,4 @@ class StoryTellerTest {
         assertTrue(result.contains("Dodano 10"))
         assertTrue(result.contains("Usunięto 3"))
     }
-}v
+}
