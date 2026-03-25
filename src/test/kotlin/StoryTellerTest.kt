@@ -1,16 +1,17 @@
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.times
-import org.junit.jupiter.api.Assertions.assertTrue
 
 class StoryTellerTest {
 
+    private val randomGenerator = mock<RandomGenerator>()
+    private val storyTeller = StoryTeller(randomGenerator)
+
     @Test
     fun `should tell a consistent story with mocked random values`() {
-        val randomGenerator = mock<RandomGenerator>()
-        val storyTeller = StoryTeller(randomGenerator)
 
         whenever(randomGenerator.randomInt()).thenReturn(5, 2)
 
@@ -26,9 +27,6 @@ class StoryTellerTest {
 
     @Test
     fun `should call randomInt exactly twice`() {
-        val randomGenerator = mock<RandomGenerator>()
-        val storyTeller = StoryTeller(randomGenerator)
-
         whenever(randomGenerator.randomInt()).thenReturn(1)
 
         storyTeller.tellFirstStory()
@@ -38,9 +36,6 @@ class StoryTellerTest {
 
     @Test
     fun `should work for different random values`() {
-        val randomGenerator = mock<RandomGenerator>()
-        val storyTeller = StoryTeller(randomGenerator)
-
         whenever(randomGenerator.randomInt()).thenReturn(10, 3)
 
         val result = storyTeller.tellFirstStory()
